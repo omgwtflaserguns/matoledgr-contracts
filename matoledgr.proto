@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package matoledgr;
 
+// Greeter Service for tests
 service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
@@ -12,4 +13,62 @@ message HelloRequest {
 
 message HelloReply {
   string message = 1;
+}
+
+/*
+  Product
+*/
+service Products {
+  rpc ListProducts (ProductRequest) returns (ProductList) {}
+}
+
+message ProductRequest {
+}
+
+message ProductList {
+  repeated Product products = 1;
+}
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  float price = 3;
+}
+
+/*
+  Transaction
+*/
+service Transaction {
+  rpc Buy (BuyRequest) returns (BuyResponse) {}
+}
+
+message BuyRequest {
+  int32 productId = 1;
+  int32 count = 2;
+}
+
+message BuyResponse {
+  enum Status {
+    OK = 0;
+    FAILED = 1;
+  }
+}
+
+/*
+  Account
+*/
+service Account {
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+}
+
+message LoginRequest {
+  string user = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  enum Status {
+    OK = 0;
+    FAILED = 1;
+  }
 }
