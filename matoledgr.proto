@@ -48,10 +48,7 @@ message BuyRequest {
 }
 
 message BuyResponse {
-  enum Status {
-    OK = 0;
-    FAILED = 1;
-  }
+  Status status = 1;
 }
 
 /*
@@ -67,8 +64,10 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  enum Status {
-    OK = 0;
-    FAILED = 1;
-  }
+  Status status = 1;
+}
+
+enum Status {
+  OK = 0;
+  FAILED = 1;
 }
