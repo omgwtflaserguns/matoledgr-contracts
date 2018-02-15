@@ -79,12 +79,12 @@ message LoginResponse {
 }
 
 enum RegisterStatus {
-    OK = 0;
-    NAME_ALREADY_IN_USE = 1;
-    PASSWORD_INVALID = 2;
+    REGISTER_OK = 0;
+    REGISTER_NAME_ALREADY_IN_USE = 1;
+    REGISTER_PASSWORD_INVALID = 2;
 }
 
 enum LoginStatus {
-  OK = 0;
-  FAILED = 1;
+  LOGIN_OK = 0;
+  LOGIN_FAILED = 1;
 }
