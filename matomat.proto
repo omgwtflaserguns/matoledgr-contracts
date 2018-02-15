@@ -48,7 +48,7 @@ message BuyRequest {
 }
 
 message BuyResponse {
-  Status status = 1;
+
 }
 
 /*
@@ -56,18 +56,35 @@ message BuyResponse {
 */
 service Account {
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Register (RegisterRequest) returns (RegisterResponse) {}
+}
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+    string email = 3;
+}
+
+message RegisterResponse {
+    RegisterStatus status = 1;
 }
 
 message LoginRequest {
-  string user = 1;
+  string username = 1;
   string password = 2;
 }
 
 message LoginResponse {
-  Status status = 1;
+  LoginStatus status = 1;
 }
 
-enum Status {
+enum RegisterStatus {
+    OK = 0;
+    NAME_ALREADY_IN_USE = 1;
+    PASSWORD_INVALID = 2;
+}
+
+enum LoginStatus {
   OK = 0;
   FAILED = 1;
 }
