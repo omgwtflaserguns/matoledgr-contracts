@@ -2,80 +2,50 @@ syntax = "proto3";
 
 package matomat;
 
-// Greeter Service for tests
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
-}
-
-message HelloRequest {
-  string name = 1;
-}
-
-message HelloReply {
-  string message = 1;
-}
-
 /*
   Product
 */
 service Products {
-  rpc ListProducts (ProductRequest) returns (ProductList) {}
+    rpc ListProducts (ProductRequest) returns (ProductList) {}
 }
 
 message ProductRequest {
 }
 
 message ProductList {
-  repeated Product products = 1;
+    repeated Product products = 1;
 }
 
 message Product {
-  int32 id = 1;
-  string name = 2;
-  float price = 3;
-}
-
-/*
-  Transaction
-*/
-service Transaction {
-  rpc Buy (BuyRequest) returns (BuyResponse) {}
-}
-
-message BuyRequest {
-  int32 productId = 1;
-  int32 count = 2;
-}
-
-message BuyResponse {
-
+    int32 id = 1;
+    string name = 2;
+    float price = 3;
 }
 
 /*
   Account
 */
 service Account {
-  rpc Login (LoginRequest) returns (LoginResponse) {}
-  rpc Register (RegisterRequest) returns (RegisterResponse) {}
+    rpc Login (AccountRequest) returns (LoginResponse) {}
+    rpc Register (AccountRequest) returns (RegisterResponse) {}
 }
 
-message RegisterRequest {
+message AccountRequest {
     string username = 1;
     string password = 2;
-    string email = 3;
 }
 
 message RegisterResponse {
     RegisterStatus status = 1;
 }
 
-message LoginRequest {
-  string username = 1;
-  string password = 2;
+message LoginResponse {
+    LoginStatus status = 1;
+    User user = 2;
 }
 
-message LoginResponse {
-  LoginStatus status = 1;
+message User {
+    string username = 1;
 }
 
 enum RegisterStatus {
@@ -85,6 +55,6 @@ enum RegisterStatus {
 }
 
 enum LoginStatus {
-  LOGIN_OK = 0;
-  LOGIN_FAILED = 1;
+    LOGIN_OK = 0;
+    LOGIN_FAILED = 1;
 }
