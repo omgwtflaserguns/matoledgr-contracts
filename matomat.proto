@@ -50,8 +50,9 @@ message User {
 
 enum RegisterStatus {
     REGISTER_OK = 0;
-    REGISTER_NAME_ALREADY_IN_USE = 1;
-    REGISTER_PASSWORD_INVALID = 2;
+    REGISTER_FAILED = 1;
+    REGISTER_FAILED_NAME_ALREADY_IN_USE = 2;
+    REGISTER_FAILED_PASSWORD_INVALID = 3;
 }
 
 enum LoginStatus {
