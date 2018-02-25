@@ -26,8 +26,9 @@ message Product {
   Account
 */
 service Account {
-    rpc Login (AccountRequest) returns (LoginResponse) {}
     rpc Register (AccountRequest) returns (RegisterResponse) {}
+    rpc Login (AccountRequest) returns (LoginResponse) {}
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {}
 }
 
 message AccountRequest {
@@ -41,6 +42,14 @@ message RegisterResponse {
 
 message LoginResponse {
     LoginStatus status = 1;
+    User user = 2;
+}
+
+message GetAccountRequest {
+}
+
+message GetAccountResponse {
+    bool authenticated = 1;
     User user = 2;
 }
 
