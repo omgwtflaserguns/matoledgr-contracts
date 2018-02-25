@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package matomat;
 
 /*
@@ -20,6 +22,42 @@ message Product {
     int32 id = 1;
     string name = 2;
     float price = 3;
+}
+
+/*
+    Transaction
+*/
+
+service Transactions {
+    rpc ListTransactions (TransactionsRequest) returns (TransactionList) {}
+    rpc Buy (BuyRequest) returns (BuyResponse) {}
+}
+
+message TransactionsRequest {
+}
+
+message TransactionList {
+    repeated Transaction transactions = 1;
+}
+
+message BuyRequest {
+    int32 productId = 1;
+}
+
+message BuyResponse {
+    BuyStatus buyStatus = 1;
+}
+
+message Transaction {
+    int32 id = 1;
+    string product = 2;
+    float price = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
+
+enum BuyStatus {
+    BUY_OK = 0;
+    BUY_FAILED = 1;
 }
 
 /*
