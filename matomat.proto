@@ -50,7 +50,7 @@ message BuyResponse {
 
 message Transaction {
     int32 id = 1;
-    string product = 2;
+    Product product = 2;
     float price = 3;
     google.protobuf.Timestamp timestamp = 4;
 }
